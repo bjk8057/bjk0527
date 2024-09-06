@@ -1,1 +1,103 @@
-# bjk0527
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜덤 숫자 곱셈</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        #product-result {
+            display: none; /* 처음에는 숨김 */
+        }
+        .icons {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .icon {
+            text-align: center;
+            font-size: 16px;
+        }
+        .icon img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>랜덤 숫자 곱셈</h1>
+    <button onclick="generateNumbers()">숫자 생성</button>
+    <div class="result">
+        <p>첫 번째 숫자: <span id="num1">-</span></p>
+        <p>두 번째 숫자: <span id="num2">-</span></p>
+        <button id="show-result" onclick="showProduct()" style="display: none;">곱셈 결과 보기</button>
+        <p>곱셈 결과: <span id="product-result">-</span></p>
+    </div>
+
+    <!-- 설명 아이콘 영역 -->
+    <div class="icons">
+        <div class="icon">
+            <img src="https://img.freepik.com/free-vector/heart_78370-492.jpg?w=826&t=st=1725590887~exp=1725591487~hmac=db17b75610941791027fcad043cd7353efa1cf23b7fc6af2e1a9cd8f14d8d569" alt="하트">
+            <p>하트: 모두에게 2칸씩 받습니다.</p>
+        </div>
+        <div class="icon">
+            <img src="https://media.istockphoto.com/id/478488777/ko/%EB%B2%A1%ED%84%B0/st-patrick-%EC%B2%AB%EB%82%A0-%EC%99%9C%EA%B3%A0%EB%84%88%EC%9D%98-%EC%84%B8%EC%9E%8E.jpg?s=2048x2048&w=is&k=20&c=nCxCD65lbBDpahPCEYiTHfz6tJtQZccyDZK6D50x_DQ=" alt="클로버">
+            <p>클로버: 모두에게 한 칸씩 나누어 줍니다.</p>
+        </div>
+        <div class="icon">
+            <img src="https://littledeep.com/wp-content/uploads/2020/09/star-icon-style1.png" alt="별">
+            <p>별: 주사위 2개를 한 번 더 굴립니다.</p>
+        </div>
+    </div>
+
+    <script>
+        // 첫 번째 숫자 배열
+        const firstNumbers = [57, 48, 63, 84, 92, 76];
+        // 두 번째 숫자 배열 (꽝 포함)
+        const secondNumbers = [13, 54, 32, 15, 25, '꽝'];
+
+        function generateNumbers() {
+            // 첫 번째 숫자 랜덤 선택
+            let num1 = firstNumbers[Math.floor(Math.random() * firstNumbers.length)];
+            // 두 번째 숫자 랜덤 선택
+            let num2 = secondNumbers[Math.floor(Math.random() * secondNumbers.length)];
+
+            // HTML에 숫자 표시
+            document.getElementById('num1').innerText = num1;
+            document.getElementById('num2').innerText = num2;
+
+            // '꽝'인 경우 곱셈 결과는 없으므로 결과 보기 버튼 숨김
+            if (num2 === '꽝') {
+                document.getElementById('product-result').style.display = 'none';
+                document.getElementById('show-result').style.display = 'none';
+                document.getElementById('product-result').innerText = '꽝입니다!';
+            } else {
+                // 곱셈 결과 숨김, 결과 보기 버튼 표시
+                document.getElementById('product-result').style.display = 'none';
+                document.getElementById('show-result').style.display = 'inline-block';
+                let product = num1 * num2;
+                document.getElementById('product-result').innerText = product;
+            }
+        }
+
+        function showProduct() {
+            // 곱셈 결과 보기 버튼 클릭 시 결과 표시
+            document.getElementById('product-result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
